@@ -13,7 +13,6 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-.gradle
 
 # External tool builders
 .externalToolBuilders/
@@ -61,3 +60,7 @@ local.properties
 .classpath
 
 # End of https://www.gitignore.io/api/eclipse
+/gradle/
+/gradlew
+/gradlew.bat
+.gradle
