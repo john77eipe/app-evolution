@@ -1,0 +1,64 @@
+buildscript {
+	ext {
+		springVersion = '5.0.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		maven { url 'https://repo.spring.io/plugins-snapshot' }
+	}
+	dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.ukudlala.web'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+/**
+	Spring io plugin to use maven bom
+	https://github.com/spring-gradle-plugins/dependency-management-plugin
+	Custom maven bom
+	http://www.baeldung.com/spring-maven-bom
+	Differences between Spring BOM, Spring Boot and Spring IO
+	https://stackoverflow.com/a/31355013
+	
+	Doc: 
+	https://docs.spring.io/platform/docs/Brussels-RELEASE/reference/html/
+	
+	Notes:
+	Spring Boot is, by design, part of the Spring IO Platform. 
+*/
+dependencyManagement {
+     imports {
+          mavenBom 'io.spring.platform:platform-bom:Brussels-RELEASE'
+     }
+}
+
+dependencies {
+	// Spring
+    compile 'org.springframework:spring-core'
+    compile 'org.springframework:spring-web'
+    compile 'org.springframework:spring-webmvc'
+    compile 'org.springframework:spring-context'
+    compile 'org.springframework:spring-beans'
+    // Servlet API
+    //implementation 'javax.servlet:javax.servlet-api'
+    //implementation 'javax.servlet.jsp:javax.servlet.jsp-api'
+    //implementation 'javax.servlet:jstl'
+    // Logging
+    compile 'org.apache.logging.log4j:log4j-core'
+    compile 'org.apache.logging.log4j:log4j-slf4j-impl'
+    compile 'commons-logging:commons-logging'
+    
+    
+}    

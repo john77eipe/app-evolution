@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn"> <!-- status logger is used internally by log4j2 components to log log4j2 -->
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%t] %d{HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+		</Console>
+		<RollingFile name="RollingFile" fileName="logs/hub.log"
+			filePattern="./logs/hub.%d{yyyy-MM-dd}.log"
+			ignoreExceptions="false">
+			<PatternLayout>
+				<Pattern>[%t] %d{yyyy-MM-dd HH:mm:ss} %-5p %c{1} %x - %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100 MB" />
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+			<DefaultRolloverStrategy max="5" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Root level="trace" includeLocation="false" >
+			<AppenderRef ref="Console" level="trace"></AppenderRef>
+<!-- 			<AppenderRef ref="RollingFile" level="trace"></AppenderRef> -->
+		</Root>
+	</Loggers>
+</Configuration> 
